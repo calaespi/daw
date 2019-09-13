@@ -46,11 +46,43 @@ git pull origin master
 
 ### Añadir clave ssh a github
 
-En primer lugar generamos una clave:
+En primer lugar instalamos openssh-server:
+```
+sudo apt install openssh-server
+```
+
+Después generamos una clave:
 ```
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ```
 Una vez generada la clave, la copiamos al portapapeles. Para ello, mostramos la clave por la consola del sistema, y luego la copiamos:
 ```
 cat ~/.ssh/id_rsa.pub
+```
+y la añadimos a github (settings -> SSH and PGP keys)
+
+Arrancamos el agente "ssh" en segundo plano:
+```
+eval "$(ssh-agent -s)"
+```
+
+y ahora añadimos la clave al agente:
+```
+ssh-add ~/.ssh/id_rsa
+```
+
+Para que github acepte la conexión ssh hay que modificar la direccion "origin". Para ver la dirección actual:
+```
+git remote show origin
+```
+
+Esto nos mostrará un mensaje similar a este:
+```
+URL  para obtener: https://github.com/calaespi/daw.git
+URL para publicar: https://github.com/calaespi/daw.git
+```
+
+Ahora hay que modificar esta dirección añadiendo la opcion "ssh":
+```
+git remote set-url origin git+ssh://git@github.com/calaespi/daw.git
 ```
