@@ -86,3 +86,15 @@ Ahora hay que modificar esta dirección añadiendo la opcion "ssh":
 ```
 git remote set-url origin git+ssh://git@github.com/calaespi/daw.git
 ```
+
+## Instalación de virtualbox
+Primero instalamos las dependencias:
+```
+sudo apt install libcurl4 libqt5opengl5 libqt5printsupport5
+```
+
+- Descargamos virtualbox y el extension pack desde la página de descargas de www.virtualbox.org
+- Ejecutamos el archivo .deb descargado:
+```
+sudo dpkg -i fichero
+```
