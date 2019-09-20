@@ -1,7 +1,7 @@
-# daw
+# DAW
 Documentación en curso
 
-# clase 1
+# Clase 1
 
 - Crear una cuenta en github
 - Crear un nuevo repositorio: daw
@@ -97,4 +97,59 @@ sudo apt install libcurl4 libqt5opengl5 libqt5printsupport5
 - Ejecutamos el archivo .deb descargado:
 ```
 sudo dpkg -i fichero
+```
+
+# Clase 2
+
+## Trabajar con usuarios
+Añadir usuario
+```
+sudo adduser victor
+```
+
+Añadir un usuario como administrador
+```
+sudo usermod -aG sudo victor
+```
+
+## Trabajar con ficheros
+Crear un script
+```
+sudo nano script.sh
+```
+
+Añadir el permiso de ejecución a un fichero
+```
+chmod +x script.sh
+```
+
+## Trabajar con git
+Añadir un archivo al repositorio
+```
+git add script.sh
+```
+
+Crear una rama para trabajar
+```
+sudo git branch nombre_rama
+```
+
+Cambiar entre ramas para trabajar en una u otra
+```
+sudo git checkout nombre_rama
+```
+
+Unir los cambios corregidos en una rama a la otra. Tenemos que estar en la rama en la cual queremos traer los cambios
+```
+sudo git merge nombre_rama
+```
+
+Mostrar las ramas que tenemos. La coloreada significa que estamos trabajando sobre esa rama
+```
+sudo git branch
+```
+
+Borrar una rama
+```
+sudo git branch -d nombre_rama
 ```
