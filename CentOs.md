@@ -20,6 +20,8 @@ ssh victor@ip
 
 sudo firewall-cmd --zone=public --add-service=http --permanent = Añadir regla firewall
 
+sudo firewall-cmd --add-port=8080/tcp --permanent
+
 sudo firewall-cmd --reload = recarga el firewall
 
 cat /etc/*-release = saber la version de linux
@@ -51,6 +53,43 @@ Poner la ip estatica
 BOOTPROTO=static
 IPADDR=192.168.1 y la ip que recibamos
 NETMASK=255.255.255.0
-GATEWAY=192.168.1.1
+GATEWAY=192.168.1.2
 DNS1=8.8.8.8
 DNS2=8.8.4.4
+
+scp ./web_daw.zip victor@servidor:/home/victor/Descargas/web_daw.zip = para pasar archivos de local al servidor
+
+sudo mkdir /var/www/carpeta crear carpeta en /var/www
+
+sudo cp -R web_daw/* /var/www/carpeta = copia un archivo a otro directorio
+
+permisos:
+644 (rw-r--r--) para archivos
+755 (rwxr-xr-x) para carpetas
+
+sudo nano /etc/httpd/conf.d/carpeta.conf = archivo de configuracion para la carpeta creada anteriormente
+
+* -> Todos
+192.168.1. ip -> para que solo acceda a esa ruta
+<VirtualHost *:80>
+    DocumentRoot /var/www/clientes
+    ServerName clientes.com
+</VirtualHost>
+
+sudo apachectl configtest = comprobar la configuracion de apache
+
+Para que escuche en el puerto 8080
+Listen 8080
+<VirtualHost *:8080>
+    DocumentRoot /var/www/trabajadores
+    ServerName trabajadores.com
+</VirtualHost>
+
+httpd -M = para ver los modulos de apache
+
+sudo yum install epel-release yum-utils
+sudo yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+
+sudo yum-config-manager --enable remi-php72
+sudo yum install php php-common php-opcache php-mcrypt php-cli
+sudo yum install php-gd php-curl php-mysqlnd
