@@ -93,3 +93,24 @@ sudo yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 sudo yum-config-manager --enable remi-php72
 sudo yum install php php-common php-opcache php-mcrypt php-cli
 sudo yum install php-gd php-curl php-mysqlnd
+
+sudo yum install mariadb mariadb-server
+
+sudo systemctl status mariadb = Preguntar por el estado de mariadb
+sudo systemctl enable mariadb = Iniciar el servicio mariadb al arrancar el servidor
+
+sudo mysql_secure_installation = Para la seguridad de mariadb
+mysql -u root -p = entrar en mysql
+
+Instalar phpMyAdmin
+sudo yum install php-pecl-zip php-mbstring
+sudo yum install phpmyadmin
+
+Hacer visible en todas las ips para phpmyadmin
+#     <RequireAny>
+#       Require ip 127.0.0.1
+#       Require ip ::1
+#     </RequireAny>
+   Require all granted
+
+
