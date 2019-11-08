@@ -15,6 +15,7 @@ network:
             nameservers:
                 addresses: [8.8.8.8,8.8.4.4]
             optional: true
+        enp0s8:
     version: 2
 
 aplica la configuracion de red
@@ -52,6 +53,9 @@ sudo apachectl graceful
 
 Permitir el puerto 80
 sudo ufw allow 'Apache'
+
+Para añadir un puerto modificar el archivo
+ports.conf
 
 Ver las caracteristicas del servidor
 cat /etc/*-release

@@ -61,11 +61,15 @@ Permitir a un rango de ip
     </RequireAll>
 </Directory>
 
-Control de acceso a nivel de carpeta (.htacces)
+Control de acceso a nivel de carpeta (.htaccess)
+Poner lo siguiente en el archivo de confirguracion de la carpeta
 <Directory "/var/www/clientes/testhtaccess">
     AllowOverride All
     Options Indexes
 </Directory>
+
+En el archivo .htaccess poner lo siguiente para denegar  el acceso
+Require all denied
 
 Crear un archivo .htaccess en el directorio de la web y usar las declaraciones anterirores para permitir o denegar
 
