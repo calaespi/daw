@@ -1,55 +1,88 @@
+- Archivo de configuracion de la red en CentOs
 sudo vi /etc/sysconfig/network-scripts/ifcfg-enp<TAB>
+
+- Comandos de vi
 i = insertar
 :wq = guardar y salir
 
-sudo service network restart = reiniciar el servicio de internet
+- Reiniciar el servicio de internet
+sudo service network restart
 
-sudo yum install httpd = instalar apache
+- Instalar apache
+sudo yum install httpd
 
-systemctl status httpd = se pregunta por el estado del servicio apache
+- Se pregunta por el estado del servicio apache
+systemctl status httpd
 
-sudo systemctl start httpd = iniciar el servicio apache
+- Iniciar el servicio apache
+sudo systemctl start httpd 
 
-sudo shutdown = apagar la maquina virtual
+- Apagar la maquina virtual
+sudo shutdown 
 
+- Atención:
 Adaptador puente para simular que la maquina virtual es otro ordenador conectado a la red
 
-ip addr show = comprobar direccion IP
+- Comprobar direccion IP
+ip addr show
 
+- Conectar con ssh
 ssh victor@ip
 
-sudo firewall-cmd --zone=public --add-service=http --permanent = Añadir regla firewall
-
+- Añadir regla firewall
+sudo firewall-cmd --zone=public --add-service=http --permanent  
 sudo firewall-cmd --add-port=8080/tcp --permanent
-
 sudo firewall-cmd --reload = recarga el firewall
 
-cat /etc/*-release = saber la version de linux
+- Saber la version de linux
+cat /etc/*-release
 
-sudo apachectl stop = parar el servidor de apache
-sudo apachectl start = iniciar el servicio de apache
-sudo apachectl restart = reiniciar el servicio de apache
-sudo apachectl graceful = reiniciar el servicio de apache cuando todo el mundo termine sus tareas
-apachectl status = ver estado de apache
+- Parar el servidor de apache
+sudo apachectl stop 
 
-sudo systemctl enable httpd = habilitar para que el apache se inicie al reiniciar el servidor
+- Iniciar el servicio de apache
+sudo apachectl start 
 
-sudo yum install httpd-manual = instalar el manual de apache
-sudo apachectl restart = reiniciar apache para ver el manual
+- Reiniciar el servicio de apache
+sudo apachectl restart  
 
-httpd -v = info version corta de apache
-httpd -V = info version larga de apache
+- Reiniciar el servicio de apache cuando todo el mundo termine sus tareas
+sudo apachectl graceful
 
-sudo nano /etc/hosts = para modificar el host
-sudo yum install nano = instalar nano
+- Ver estado de apache 
+apachectl status 
 
-sudo nano /etc/hostname = cambiar el nombre del servidor
+- Habilitar para que el apache se inicie al reiniciar el servidor
+sudo systemctl enable httpd 
 
-ll /etc/httpd = ver directorios
+- Instalar el manual de apache
+sudo yum install httpd-manual 
 
-sudo nano /etc/httpd/conf/httpd.conf = archivo de configuracion
+- Reiniciar apache para ver el manual
+sudo apachectl restart 
 
-Poner la ip estatica
+- Info version corta de apache
+httpd -v 
+
+- Info version larga de apache
+httpd -V 
+
+- Para modificar el host
+sudo nano /etc/hosts 
+
+- Instalar nano
+sudo yum install nano 
+
+- Cambiar el nombre del servidor
+sudo nano /etc/hostname 
+
+- Ver directorios
+ll /etc/httpd 
+
+- Archivo de configuracion
+sudo nano /etc/httpd/conf/httpd.conf 
+
+- Poner la ip estatica
 BOOTPROTO=static
 IPADDR=192.168.1 y la ip que recibamos
 NETMASK=255.255.255.0
@@ -57,17 +90,21 @@ GATEWAY=192.168.1.2
 DNS1=8.8.8.8
 DNS2=8.8.4.4
 
-scp ./web_daw.zip victor@servidor:/home/victor/Descargas/web_daw.zip = para pasar archivos de local al servidor
+- Para pasar archivos de local al servidor
+scp ./web_daw.zip victor@servidor:/home/victor/Descargas/web_daw.zip 
 
-sudo mkdir /var/www/carpeta crear carpeta en /var/www
+- Crear carpeta en /var/www
+sudo mkdir /var/www/carpeta 
 
-sudo cp -R web_daw/* /var/www/carpeta = copia un archivo a otro directorio
+- Copia un archivo a otro directorio
+sudo cp -R web_daw/* /var/www/carpeta 
 
-permisos:
+- Permisos:
 644 (rw-r--r--) para archivos
 755 (rwxr-xr-x) para carpetas
 
-sudo nano /etc/httpd/conf.d/carpeta.conf = archivo de configuracion para la carpeta creada anteriormente
+- Archivo de configuracion para la carpeta creada anteriormente
+sudo nano /etc/httpd/conf.d/carpeta.conf 
 
 * -> Todos
 192.168.1. ip -> para que solo acceda a esa ruta
@@ -76,17 +113,20 @@ sudo nano /etc/httpd/conf.d/carpeta.conf = archivo de configuracion para la carp
     ServerName clientes.com
 </VirtualHost>
 
-sudo apachectl configtest = comprobar la configuracion de apache
+- Comprobar la configuracion de apache
+sudo apachectl configtest 
 
-Para que escuche en el puerto 8080
+- Para que escuche en el puerto 8080
 Listen 8080
 <VirtualHost *:8080>
     DocumentRoot /var/www/trabajadores
     ServerName trabajadores.com
 </VirtualHost>
 
-httpd -M = para ver los modulos de apache
+- Para ver los modulos de apache
+httpd -M 
 
+- Instalar php
 sudo yum install epel-release yum-utils
 sudo yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 
@@ -94,19 +134,26 @@ sudo yum-config-manager --enable remi-php72
 sudo yum install php php-common php-opcache php-mcrypt php-cli
 sudo yum install php-gd php-curl php-mysqlnd
 
+- Instalar MariaDB / Mysql
 sudo yum install mariadb mariadb-server
 
-sudo systemctl status mariadb = Preguntar por el estado de mariadb
-sudo systemctl enable mariadb = Iniciar el servicio mariadb al arrancar el servidor
+- Preguntar por el estado de mariadb
+sudo systemctl status mariadb 
 
-sudo mysql_secure_installation = Para la seguridad de mariadb
-mysql -u root -p = entrar en mysql
+- Iniciar el servicio mariadb al arrancar el servidor
+sudo systemctl enable mariadb 
 
-Instalar phpMyAdmin
+- Para la seguridad de mariadb
+sudo mysql_secure_installation 
+
+- Entrar en mysql
+mysql -u root -p 
+
+- Instalar phpMyAdmin
 sudo yum install php-pecl-zip php-mbstring
 sudo yum install phpmyadmin
 
-Hacer visible en todas las ips para phpmyadmin
+- Hacer visible en todas las ips para phpmyadmin
 #     <RequireAny>
 #       Require ip 127.0.0.1
 #       Require ip ::1

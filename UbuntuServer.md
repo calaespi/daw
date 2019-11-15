@@ -1,10 +1,10 @@
-directorio de configuracion de red
+- Directorio de configuracion de red
 /etc/netplan
 
-archivo de configuracion de red
+- Archivo de configuracion de red
 sudo nano /etc/netplan/50-cloud-init.yaml
 
-poner ip estatica
+- Poner ip estatica
 network:
     ethernets:
         enp0s3:
@@ -18,67 +18,67 @@ network:
         enp0s8:
     version: 2
 
-aplica la configuracion de red
+- Aplica la configuracion de red
 sudo netplan apply
 
-Devuelve el estado del firewall
+- Devuelve el estado del firewall
 sudo ufw status
 
-Devuelve mas informacion del estado de firewall
+- Devuelve mas informacion del estado de firewall
 sudo ufw status verbose
 
-Habilitar firewall
+- Habilitar firewall
 sudo ufw enable
 
-Muestra la lista de aplicacion permitidas en el firewall
+- Muestra la lista de aplicacion permitidas en el firewall
 sudo ufw app list
 
-instalar apache
+- Instalar apache
 sudo apt install apache2
 
-comprobar estado de apache
+- Comprobar estado de apache
 systemctl status apache2
 
-parar apache
+- Parar apache
 sudo apachectl stop
 
-iniciar apache
+- Iniciar apache
 sudo apachectl start
 
-reiniciar apache
+- Reiniciar apache
 sudo apachectl restart
 
-reiniciar apache esperando a que se termine las tareas de los usuarios
+-  Reiniciar apache esperando a que se termine las tareas de los usuarios
 sudo apachectl graceful
 
-Permitir el puerto 80
+- Permitir el puerto 80
 sudo ufw allow 'Apache'
 
-Para añadir un puerto modificar el archivo
+- Para añadir un puerto modificar el archivo
 ports.conf
 
-Ver las caracteristicas del servidor
+- Ver las caracteristicas del servidor
 cat /etc/*-release
 
-Instalar el manual
+- Instalar el manual
 sudo apt install apache2-doc
 
-Se accede al manual con la siguiente direccion
+- Se accede al manual con la siguiente direccion
 (ip)/manual
 
-directorio de configuracion de apache
+- Directorio de configuracion de apache
 /etc/apache2
 
-Permitir el puerto 22
+- Permitir el puerto 22
 sudo ufw allow 'OpenSSH'
 
-instalar unzip
+- Instalar unzip
 sudo apt install unzip
 
-copiar de un directorio a otro los archivos
+- Copiar de un directorio a otro los archivos
 sudo cp -R . /var/www/alumnos
 
-Configuracion de la web de alumnos
+- Configuracion de la web de alumnos
 sudo nano /etc/apache2/sites-available/alumnos.conf
 
 <VirtualHost *:80>
@@ -86,10 +86,10 @@ sudo nano /etc/apache2/sites-available/alumnos.conf
     DocumentRoot /var/www/alumnos
 </VirtualHost>
 
-Habilitar la web para poder verla
+- Habilitar la web para poder verla
 sudo a2ensite alumnos
 systemctl reload apache2
 
-Deshabilitar la web para dejarla de ver
+- Deshabilitar la web para dejarla de ver
 sudo a2dissite alumnos
 systemctl reload apache2
