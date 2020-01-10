@@ -72,3 +72,17 @@ docker restart miweb
 ------
 Crea otro tag del contenedor
 docker tag 1fe92fba99b8(imagen id) calaespi/webapp:latest
+
+-----
+Iniciar Apache
+docker run httpd
+
+ver logs de apache. (apache porque he iniciado con ese nombre mi contenedor)
+docker container logs apache
+
+----
+Traer un contenedor 
+docker pull contenedor
+
+Ver info de un contenedor
+docker inspect contenedor
