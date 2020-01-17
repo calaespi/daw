@@ -86,3 +86,45 @@ docker pull contenedor
 
 Ver info de un contenedor
 docker inspect contenedor
+
+----
+REDES
+Crear una red
+docker network create -d bridge mired
+
+Borrar una red
+docker network rm mired
+
+Ver listado de las redes
+docker network ls
+
+Ver caracteristicas de una red
+docker network inspect mired
+
+Arrancar una imagen en una red
+docker run -d --network=mired --name ejemplo -p 80:5000 calaespi/webapp
+docker run -d --network host --name ejemplo calaespi/webapp
+
+Conectar un contenedor a una red
+docker network connect bridge ejemplo
+
+----
+ALMACENAMIENTO 
+
+Copiar archivos de un contenedor a una carpeta local, tiene que estar el contenedor en marcha
+docker cp miweb2:/opt/webapp/. /home/victor/Proyectos/miweb
+
+VOLUMENES
+
+Crea un volumen
+docker volume create datos
+
+Inspecciona un volumen
+docker volume inspect datos
+
+Enlazar un contenedor con un volumen
+docker run -d -p 80:5000 --name miweb -v datos:/opt/webapp  calaespi/webapp
+
+VOLUMENES CONECTADOS (BIND)
+docker run -d -p 80:5000 --name miweb -v /home/victor/Proyectos/miweb:/opt/webapp  calaespi/webapp
+
