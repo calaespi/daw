@@ -128,3 +128,8 @@ docker run -d -p 80:5000 --name miweb -v datos:/opt/webapp  calaespi/webapp
 VOLUMENES CONECTADOS (BIND)
 docker run -d -p 80:5000 --name miweb -v /home/victor/Proyectos/miweb:/opt/webapp  calaespi/webapp
 
+------
+consola iterativa
+
+docker exec -t miapache /bin/bash
+
