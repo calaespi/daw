@@ -93,7 +93,7 @@ Usar docker-compose con Dockerfile
 version: '3'
 services:
   <nombre>:
-    build: .Dockerfile
+    build: . o ./<carpeta>
     command: <Comando a ejecutar en el contenedor>
 
 
